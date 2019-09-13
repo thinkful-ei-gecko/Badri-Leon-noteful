@@ -29,6 +29,6 @@ export default class FolderList extends React.Component {
       {/* </NotefulContext.Consumer> */}
       <Link to='/add-folder'><button type='button'>Add Folder</button></Link>
     </>
-      );
-        }
+    );
+  }
 }

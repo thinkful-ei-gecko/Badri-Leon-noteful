@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import NoteItem from "./NoteItem";
 import NotefulContext from "../NotefulContext";
@@ -15,9 +16,12 @@ class NoteList extends Component {
         : notes;
 
     return (
-      <li className="main__note-list">
-        {notes.map(note => <NoteItem note={note} key={note.id} />)}
-      </li>
+      <>
+        <li className="main__note-list">
+          {notes.map(note => <NoteItem note={note} key={note.id} />)}
+        </li>
+        <Link to='/add-note'><button type='button'>Add New Note</button></Link>
+      </>
     )
   }
 }
