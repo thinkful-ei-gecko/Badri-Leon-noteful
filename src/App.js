@@ -9,6 +9,7 @@ import FolderDetailedView from "./Components/FolderDetailedView";
 import NoteList from "./Components/NoteList";
 import NoteDetailedView from "./Components/NoteDetailedView";
 import NotFound from "./Components/NotFound";
+import AddFolder from './Components/AddFolder';
 import NotefulContext from "./NotefulContext";
 
 export default class App extends Component {
@@ -29,6 +30,30 @@ export default class App extends Component {
       notes: newNotes
     });
   };
+
+  postAPI = (folderName) => {
+    fetch(`http://localhost:9090/folders/${Math.round(Math.random() * 200) +1}`, {
+      method: "POST",
+      'Content-Type': "application/json",
+      body: {name: folderName}
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      const newFolder = {
+        name: folderName,
+        id: Math.round(Math.random() * 200) +1
+      }
+      this.setState({
+        folders: {...this.state.folders, newFolder}
+      });
+    })
+    .catch(error => alert(error));
+  }
 
   getFolders() {
     fetch(`http://localhost:9090/folders`, {
@@ -69,13 +94,15 @@ export default class App extends Component {
   componentDidMount() {
     this.getNotes();
     this.getFolders();
+    this.postAPI();
   }
 
   render() {
     const contextValue = {
       folders: this.state.folders,
       notes: this.state.notes,
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.handleDeleteNote,
+      postAPI: this.postAPI
     };
 
     return (
@@ -87,6 +114,7 @@ export default class App extends Component {
               <Route exact path="/" component={FolderList} />
               <Route path="/folder/:folderId" component={FolderList} />
               <Route path="/note/:noteId" component={FolderDetailedView} />
+              <Route path='/add-folder' component={FolderList} />
               <Route component={NotFound} />
             </Switch>
           </Sidebar>
@@ -95,6 +123,7 @@ export default class App extends Component {
               <Route exact path="/" component={NoteList} />
               <Route path="/folder/:folderId" component={NoteList} />
               <Route path="/note/:noteId" component={NoteDetailedView} />
+              <Route path="/add-folder" component={AddFolder} />
               <Route component={NotFound} />
             </Switch>
           </Main>

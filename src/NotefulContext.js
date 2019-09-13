@@ -6,6 +6,10 @@ const NotefulContext = React.createContext({
   deleteNote: () => {
 
   },
+  postAPI: () => {
+
+  },
+  
 })
 
 export default NotefulContext;

@@ -6,8 +6,12 @@ class FolderDetailedView extends Component {
   static contextType = NotefulContext;
 
   render() {
-    const { folders, notes } = this.context;
-    const { match, history } = this.props;
+    const { folders, notes } = this.context || {};
+    const { match, history } = this.props || {};
+
+    if (!folders.length > 1) {
+      return 'loading'
+    }
 
     const folder = folders.find(folder =>
       folder.id === notes.find(note => note.id === match.params.noteId).folderId
