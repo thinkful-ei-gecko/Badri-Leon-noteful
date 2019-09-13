@@ -61,7 +61,8 @@ class App extends Component {
   postNoteAPI = (noteName, noteContent, noteFolder) => {
     let jsonString = {name: noteName,
                       content: noteContent,
-                      folderId: noteFolder}
+                      folderId: noteFolder,
+                      modified: new Date().toISOString()}
     let stringified = JSON.stringify(jsonString);
     console.log(`stringified is ${stringified}`);
     fetch(`http://localhost:9090/notes`, {

@@ -1,34 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from "react-router";
 import NotefulContext from "../NotefulContext";
 
-class FolderDetailedView extends Component {
+class FolderDetailedView extends React.Component {
   static contextType = NotefulContext;
 
   render() {
-    const { folders, notes } = this.context || {};
-    const { match, history } = this.props || {};
+    const { folders, notes } = this.context || [];
+    // const { match, history } = this.props
 
-    if (!folders || !notes) {
-      return 'loading';
-    }
+      // const notesFind = this.findNote(this.context.notes, 
+      //   this.props.match.params.noteId) || {};
+      const noteFind = notes.find(note => note.id === this.props.match.params.noteId ) || {}
+        const folderFind = folders.find(folder => folder.id === noteFind.folderId) || []
+        console.log(folderFind);
 
-    const folder = folders.find(folder =>
-      folder.id === notes.find(note => note.id === match.params.noteId).folderId
-    );
-
-    if (!folder) {
-      return 'loading';
-    }
-
-    
     return (
       <div className='sidebar__folder-detailed-view'>
-        <button type="button" onClick={() => history.goBack()}>Go back</button>
-        <h2>{folder.name}</h2>
+        <button type="button" onClick={() => this.props.history.goBack()}>Go back</button>
+        <h2>{folderFind.name}</h2>
       </div>
     )
   }
 }
+//   }
+// }
 
 export default withRouter(FolderDetailedView);

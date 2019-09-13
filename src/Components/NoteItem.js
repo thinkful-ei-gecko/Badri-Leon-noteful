@@ -28,6 +28,7 @@ export default class NoteItem extends Component {
   render() {
     const { id, name, modified } = this.props.note;
     const date = new Date(modified);
+
     return (
       <div className="main__note-item" key={id}>
         <Link to={`/note/${id}`}>
