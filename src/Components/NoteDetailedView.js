@@ -29,12 +29,13 @@ class NoteDetailedView extends Component {
   render() {
     const { notes } = this.context;
     const { match } = this.props;
-    const note = notes.find(note => note.id === match.params.noteId);
+    const note = notes.find(note => note.id === match.params.noteId) || {} ;
+    const newDate = new Date(note.modified);
 
     return (
       <div className="main__note-detailed-view" key={note.id}>
         <p>{note.name}</p>
-        <p>{note.modified}</p>
+        <p>{newDate.toDateString()}</p>
         <Link to="/">
           <button
             type="button"

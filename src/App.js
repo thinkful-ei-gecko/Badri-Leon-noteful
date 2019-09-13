@@ -32,10 +32,15 @@ export default class App extends Component {
   };
 
   postAPI = (folderName) => {
-    fetch(`http://localhost:9090/folders/${Math.round(Math.random() * 200) +1}`, {
+    let jsonString = {name: folderName}
+    let stringified = JSON.stringify(jsonString);
+    console.log(`stringified is ${stringified}`);
+    fetch(`http://localhost:9090/folders/`, {
       method: "POST",
-      'Content-Type': "application/json",
-      body: {name: folderName}
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: stringified
     })
     .then(response => {
       if (!response.ok) {
@@ -94,7 +99,6 @@ export default class App extends Component {
   componentDidMount() {
     this.getNotes();
     this.getFolders();
-    this.postAPI();
   }
 
   render() {

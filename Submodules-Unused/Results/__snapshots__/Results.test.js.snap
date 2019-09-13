@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Results /> renders the Results UI with data 1`] = `
+<div>
+  <ul>
+    <Book
+      bookData={
+        Object {
+          "author": "apple lady1",
+          "description": "who loves apples",
+          "picture": "http://books.google.com/books/content?id=FDEknQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          "price": "501 usd",
+          "title": "Apples",
+        }
+      }
+      key="0"
+    />
+    <Book
+      bookData={
+        Object {
+          "author": "apple lady2",
+          "description": "who loves apples2",
+          "picture": "http://books.google.com/books/content?id=FDEknQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          "price": "502 usd",
+          "title": "Apples2",
+        }
+      }
+      key="1"
+    />
+    <Book
+      bookData={
+        Object {
+          "author": "apple lady3",
+          "description": "who loves apples3",
+          "picture": "http://books.google.com/books/content?id=FDEknQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          "price": "503 usd",
+          "title": "Apples3",
+        }
+      }
+      key="2"
+    />
+    <Book
+      bookData={
+        Object {
+          "author": "apple lady4",
+          "description": "who loves apples4",
+          "picture": "http://books.google.com/books/content?id=FDEknQAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          "price": "504 usd",
+          "title": "Apples4",
+        }
+      }
+      key="3"
+    />
+  </ul>
+</div>
+`;

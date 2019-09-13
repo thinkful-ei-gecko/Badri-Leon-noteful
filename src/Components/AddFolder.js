@@ -1,5 +1,6 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
+import {Link} from 'react-router-dom'
 
 export default class AddFolder extends React.Component {
 
@@ -14,19 +15,20 @@ export default class AddFolder extends React.Component {
 
     handleAddFolderSubmit = (event) => {
         event.preventDefault();
-        const folderName = this.state;
+        const folderName = this.state.folderName;
+        console.log(this.props);
         this.context.postAPI(folderName);
     }
 
     updateFolderName(folderName) {
-        this.setState({folderName: {value: folderName}});
+        this.setState({folderName});
     }
 
     render() {
-        
+        console.log(this.props.text);
         return (
             <form className='add-folder' onSubmit={(e) => this.handleAddFolderSubmit(e)}>
-                <label for='addFolder'>Folder name:</label>
+                <label htmlFor='addFolder'>Folder name:</label>
                 <input type='text' id='addFolder' name='addFolder'
                         onChange={e => this.updateFolderName(e.target.value)}></input>
                 <button type='submit'>Add Folder</button>
