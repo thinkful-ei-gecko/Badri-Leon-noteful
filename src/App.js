@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
+import { withRouter } from 'react-router';
 import "./App.css";
 import Header from "./Components/Header";
 import Main from "./Components/Main";
@@ -13,7 +14,7 @@ import AddFolder from './Components/AddFolder';
 import AddNote from './Components/AddNote'
 import NotefulContext from "./NotefulContext";
 
-export default class App extends Component {
+class App extends Component {
   static contextType = NotefulContext;
 
   constructor(props) {
@@ -52,9 +53,40 @@ export default class App extends Component {
     .then(data => {
       this.setState({
         folders: [...this.state.folders, data]
-      });
+      }, this.goToHome());
     })
     .catch(error => alert(error));
+  }
+
+  postNoteAPI = (noteName, noteContent, noteFolder) => {
+    let jsonString = {name: noteName,
+                      content: noteContent,
+                      folderId: noteFolder}
+    let stringified = JSON.stringify(jsonString);
+    console.log(`stringified is ${stringified}`);
+    fetch(`http://localhost:9090/notes`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: stringified
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      this.setState({
+        notes: [...this.state.notes, data]
+      }, this.goToHome());
+    })
+    .catch(error => alert(error));
+  }
+
+  goToHome () {
+    this.props.history.goBack()
   }
 
   getFolders() {
@@ -103,7 +135,8 @@ export default class App extends Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.handleDeleteNote,
-      postAPI: this.postAPI
+      postAPI: this.postAPI,
+      postNoteAPI: this.postNoteAPI
     };
 
     return (
@@ -135,3 +168,5 @@ export default class App extends Component {
     );
   }
 }
+
+export default withRouter(App)

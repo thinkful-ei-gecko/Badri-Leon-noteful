@@ -18,10 +18,8 @@ export default class AddNote extends React.Component {
         event.preventDefault();
         const noteName = this.state.noteName;
         const noteContent = this.state.noteContent;
-        const noteFolder = this.state.noteFolder
-        console.log(this.props);
-
-        //this.context.postNoteAPI(noteName, noteContent, noteFolder);
+        const noteFolder = this.state.noteFolder;
+        this.context.postNoteAPI(noteName, noteContent, noteFolder);
     }
 
     updateNoteName(noteName) {
@@ -46,11 +44,11 @@ export default class AddNote extends React.Component {
             <form className='add-note' onSubmit={(e) => this.handleAddNoteSubmit(e)}>
                 <label htmlFor='addNote'>Note title: </label>
                 <input type='text' id='addNote' name='addNote'
-                        onChange={e => this.updateNoteName(e.target.value)}></input>
+                        onChange={e => this.updateNoteName(e.target.value)} required></input>
                 <label htmlFor='content'>Content: </label>
-                <textarea id='content' name='content'></textarea>
-                <select onChange={e => this.updateNoteFolder(e.target.value)}>
-                    <option value='none'>Please select a folder below</option>
+                <textarea id='content' name='content' required onChange={(e)=> this.updateNoteContent(e.target.value)}></textarea>
+                <select onChange={e => this.updateNoteFolder(e.target.value)} required>
+                    <option value=''>Please select a folder below</option>
                     {folders.map((folder) => 
                         <option value={folder.id} key={folder.id}>{folder.name}</option>
                     )}

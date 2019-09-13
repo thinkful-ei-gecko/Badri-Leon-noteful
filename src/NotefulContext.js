@@ -8,8 +8,10 @@ const NotefulContext = React.createContext({
   },
   postAPI: () => {
 
+  },
+  postNoteAPI: () => {
+
   }
-  
 })
 
 export default NotefulContext;

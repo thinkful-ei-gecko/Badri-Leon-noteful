@@ -1,6 +1,5 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
-import {Link} from 'react-router-dom'
 
 export default class AddFolder extends React.Component {
 
