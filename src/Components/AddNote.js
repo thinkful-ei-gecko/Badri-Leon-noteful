@@ -50,6 +50,7 @@ export default class AddNote extends React.Component {
                 <label htmlFor='content'>Content: </label>
                 <textarea id='content' name='content'></textarea>
                 <select onChange={e => this.updateNoteFolder(e.target.value)}>
+                    <option value='none'>Please select a folder below</option>
                     {folders.map((folder) => 
                         <option value={folder.id} key={folder.id}>{folder.name}</option>
                     )}

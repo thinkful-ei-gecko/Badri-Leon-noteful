@@ -8,15 +8,9 @@ export default class FolderList extends React.Component {
   static contextType = NotefulContext;
 
   render() {
-    const { folders } = this.context || {};
-    console.log(`folders is ${folders}`);
-    if (!folders) { 
-      console.log('got to first loading');
-      return 'loading' }
-
-    console.log(`pre-check`);
-    const check = folders.map(folder => <FolderItem folder={folder} key={folder.id} />) || 'loading';
-    if (!check) { return 'loading'}
+    const folders = this.context.folders || [];
+    console.log(this.context)
+    const check = folders.map(folder => <FolderItem folder={folder} key={folder.id} />);
 
     return(
       <>

@@ -36,7 +36,7 @@ export default class App extends Component {
     let jsonString = {name: folderName}
     let stringified = JSON.stringify(jsonString);
     console.log(`stringified is ${stringified}`);
-    fetch(`http://localhost:9090/folders/`, {
+    fetch(`http://localhost:9090/folders`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json'
@@ -50,12 +50,8 @@ export default class App extends Component {
       return response.json();
     })
     .then(data => {
-      const newFolder = {
-        name: folderName,
-        id: Math.round(Math.random() * 200) +1
-      }
       this.setState({
-        folders: {...this.state.folders, newFolder}
+        folders: [...this.state.folders, data]
       });
     })
     .catch(error => alert(error));

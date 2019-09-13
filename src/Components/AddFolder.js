@@ -15,9 +15,14 @@ export default class AddFolder extends React.Component {
 
     handleAddFolderSubmit = (event) => {
         event.preventDefault();
-        const folderName = this.state.folderName;
-        console.log(this.props);
-        this.context.postAPI(folderName);
+        if (this.state.folderName.trim().length > 3) {
+            const folderName = this.state.folderName;
+            console.log(this.props);
+            this.context.postAPI(folderName);
+        }
+        else {
+            alert('Please enter a longer string')
+        }
     }
 
     updateFolderName(folderName) {
@@ -25,12 +30,12 @@ export default class AddFolder extends React.Component {
     }
 
     render() {
-        console.log(this.props.text);
         return (
             <form className='add-folder' onSubmit={(e) => this.handleAddFolderSubmit(e)}>
                 <label htmlFor='addFolder'>Folder name:</label>
                 <input type='text' id='addFolder' name='addFolder'
-                        onChange={e => this.updateFolderName(e.target.value)}></input>
+                        onChange={e => this.updateFolderName(e.target.value)}
+                        required></input>
                 <button type='submit'>Add Folder</button>
                 <button type='button' onClick={() => this.props.history.goBack()}>Go back</button>
             </form>
