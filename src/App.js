@@ -145,7 +145,7 @@ class App extends Component {
       <div className="app">
         <Header />
         <NotefulContext.Provider value={contextValue}>
-          <ErrorBoundary selection='sidebar'>
+        <ErrorBoundary selection='sidebar'>
           <Sidebar>
             <Switch>
               <Route exact path="/" component={FolderList} />
@@ -157,7 +157,7 @@ class App extends Component {
             </Switch>
           </Sidebar>
           </ErrorBoundary>
-          <ErrorBoundary selection='list'>
+          <ErrorBoundary selection='content'>
           <Main>
             <Switch>
               <Route exact path="/" component={NoteList} />
