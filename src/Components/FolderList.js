@@ -10,18 +10,13 @@ export default class FolderList extends React.Component {
 
   render() {
     const folders = this.context.folders || [];
-    console.log(this.context)
-    const check = folders.map(folder => <ErrorBoundary selection='folder'><FolderItem folder={folder} key={folder.id} /></ErrorBoundary>);
+    const check = folders.map(folder => <ErrorBoundary selection='folder' key={folder.id + 'eb'}><FolderItem folder={folder} key={folder.id} /></ErrorBoundary>);
 
     return(
       <>
-        {/* <NotefulContext.Consumer>
-        {({ folders }) => ( */}
           <li className="sidebar__folder-list">
             {check}
           </li>
-        {/* )} */}
-      {/* </NotefulContext.Consumer> */}
       <Link to='/add-folder'><button type='button'>Add Folder</button></Link>
     </>
     );
