@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import NoteItem from "./NoteItem";
 import NotefulContext from "../NotefulContext";
+import ErrorBoundary from './ErrorBoundary'
 
 class NoteList extends Component {
   static contextType = NotefulContext;
@@ -18,7 +19,7 @@ class NoteList extends Component {
     return (
       <>
         <li className="main__note-list">
-          {notes.map(note => <NoteItem note={note} key={note.id} />)}
+          {notes.map(note => <ErrorBoundary selection='note'><NoteItem note={note} key={note.id} /></ErrorBoundary>)}
         </li>
         <Link to='/add-note'><button type='button'>Add New Note</button></Link>
       </>

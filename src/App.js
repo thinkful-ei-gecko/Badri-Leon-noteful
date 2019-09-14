@@ -13,6 +13,7 @@ import NotFound from "./Components/NotFound";
 import AddFolder from './Components/AddFolder';
 import AddNote from './Components/AddNote'
 import NotefulContext from "./NotefulContext";
+import ErrorBoundary from './Components/ErrorBoundary'
 
 class App extends Component {
   static contextType = NotefulContext;
@@ -144,6 +145,7 @@ class App extends Component {
       <div className="app">
         <Header />
         <NotefulContext.Provider value={contextValue}>
+          <ErrorBoundary selection='sidebar'>
           <Sidebar>
             <Switch>
               <Route exact path="/" component={FolderList} />
@@ -154,6 +156,8 @@ class App extends Component {
               <Route component={NotFound} />
             </Switch>
           </Sidebar>
+          </ErrorBoundary>
+          <ErrorBoundary selection='list'>
           <Main>
             <Switch>
               <Route exact path="/" component={NoteList} />
@@ -164,6 +168,7 @@ class App extends Component {
               <Route component={NotFound} />
             </Switch>
           </Main>
+          </ErrorBoundary>
         </NotefulContext.Provider>
       </div>
     );

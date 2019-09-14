@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom'
 import FolderItem from "./FolderItem";
 import NotefulContext from "../NotefulContext";
+import ErrorBoundary from './ErrorBoundary'
 
 
 export default class FolderList extends React.Component {
@@ -10,7 +11,7 @@ export default class FolderList extends React.Component {
   render() {
     const folders = this.context.folders || [];
     console.log(this.context)
-    const check = folders.map(folder => <FolderItem folder={folder} key={folder.id} />);
+    const check = folders.map(folder => <ErrorBoundary selection='folder'><FolderItem folder={folder} key={folder.id} /></ErrorBoundary>);
 
     return(
       <>

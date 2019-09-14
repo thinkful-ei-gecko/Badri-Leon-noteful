@@ -22,5 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-#other modules
+#other modules & testing
 /Submodules-Unused
+/build 
+/Badri-Leon-noteful
