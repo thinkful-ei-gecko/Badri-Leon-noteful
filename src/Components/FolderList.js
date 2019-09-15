@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import FolderItem from "./FolderItem";
 import NotefulContext from "../NotefulContext";
-import ErrorBoundary from './ErrorBoundary'
+import ErrorBoundary from './ErrorBoundary';
 
 
 export default class FolderList extends React.Component {

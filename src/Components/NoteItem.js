@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
+import './noteItem.css'
 
 function deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
@@ -31,11 +32,11 @@ export default class NoteItem extends Component {
 
     return (
       <div className="main__note-item" key={id}>
-        <div class="leftSide">
+        <div className="leftSide">
           <p className="itemName">{name}</p>
           <p>{date.toDateString()}</p>
         </div>
-        <div class="rightSide">
+        <div className="rightSide">
           <button type="button" onClick={() => deleteNoteRequest(id, this.context.deleteNote)}>
             Delete note
           </button>

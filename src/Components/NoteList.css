@@ -1,0 +1,18 @@
+/* note list */
+
+.addNote button {
+  background-color: white;
+  color: #0E516B;
+  height: 60px;
+  border-radius: 50%;
+  width: 60px;
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  border: 2px solid #2A8FB8;
+}
+
+.addNote button:hover {
+  background-color: #54CFFF;
+  border: 2px solid white;
+}

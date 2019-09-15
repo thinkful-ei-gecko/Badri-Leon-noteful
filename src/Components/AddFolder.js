@@ -1,5 +1,7 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
+import PropTypes from 'prop-types'
+import './addItem.css'
 
 export default class AddFolder extends React.Component {
 
@@ -16,7 +18,6 @@ export default class AddFolder extends React.Component {
         event.preventDefault();
         if (this.state.folderName.trim().length > 3) {
             const folderName = this.state.folderName;
-            console.log(this.props);
             this.context.postAPI(folderName);
         }
         else {
@@ -30,7 +31,7 @@ export default class AddFolder extends React.Component {
 
     render() {
         return (
-            <form className='add-folder' onSubmit={(e) => this.handleAddFolderSubmit(e)}>
+            <form className='add-item' onSubmit={(e) => this.handleAddFolderSubmit(e)}>
                 <label htmlFor='addFolder'>Folder name:</label>
                 <input type='text' id='addFolder' name='addFolder'
                         onChange={e => this.updateFolderName(e.target.value)}

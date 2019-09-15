@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { withRouter } from 'react-router';
-// import 'normalize.css';
-import "./App.css";
 import {Link} from 'react-router-dom'
-import Main from "./Components/Main";
-import Sidebar from "./Components/Sidebar";
+import "./App.css";
 import FolderList from "./Components/FolderList";
 import FolderDetailedView from "./Components/FolderDetailedView";
 import NoteList from "./Components/NoteList";
@@ -15,6 +12,7 @@ import AddFolder from './Components/AddFolder';
 import AddNote from './Components/AddNote'
 import NotefulContext from "./NotefulContext";
 import ErrorBoundary from './Components/ErrorBoundary'
+import PropTypes from 'prop-types'
 
 class App extends Component {
   static contextType = NotefulContext;
@@ -145,7 +143,7 @@ class App extends Component {
         <Link to ='/' className="header"><h1>Noteful</h1></Link>
         <NotefulContext.Provider value={contextValue}>
         <ErrorBoundary selection='sidebar'>
-          <Sidebar>
+          <section className="sidebar">
             <Switch>
               <Route exact path="/" component={FolderList} />
               <Route path="/folder/:folderId" component={FolderList} />
@@ -154,10 +152,10 @@ class App extends Component {
               <Route path="/add-note" component={FolderList} />
               <Route component={NotFound} />
             </Switch>
-          </Sidebar>
+          </section>
           </ErrorBoundary>
           <ErrorBoundary selection='content'>
-          <Main>
+          <main className="main">
             <Switch>
               <Route exact path="/" component={NoteList} />
               <Route path="/folder/:folderId" component={NoteList} />
@@ -166,7 +164,7 @@ class App extends Component {
               <Route path="/add-note" component={AddNote} />
               <Route component={NotFound} />
             </Switch>
-          </Main>
+          </main>
           </ErrorBoundary>
         </NotefulContext.Provider>
       </div>
@@ -175,3 +173,23 @@ class App extends Component {
 }
 
 export default withRouter(App)
+
+NotefulContext.Provider.propTypes = {
+  value : PropTypes.shape({
+    folders: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string
+    })).isRequired,
+    notes: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      modified: PropTypes.string,
+      folderId: PropTypes.string,
+      content: PropTypes.string
+
+    })).isRequired,
+    deleteNote: PropTypes.func.isRequired,
+    postAPI: PropTypes.func.isRequired,
+    postNoteAPI: PropTypes.func.isRequired
+  })
+}

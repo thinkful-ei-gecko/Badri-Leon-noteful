@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import NoteItem from "./NoteItem";
 import NotefulContext from "../NotefulContext";
-import ErrorBoundary from './ErrorBoundary'
+import ErrorBoundary from './ErrorBoundary';
+import './NoteList.css'
 
 class NoteList extends Component {
   static contextType = NotefulContext;

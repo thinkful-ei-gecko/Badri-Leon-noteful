@@ -1,5 +1,6 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
+import './addItem.css'
 
 export default class AddNote extends React.Component {
 
@@ -41,7 +42,7 @@ export default class AddNote extends React.Component {
         let { folders } = this.context;
 
         return (
-            <form className='add-note' onSubmit={(e) => this.handleAddNoteSubmit(e)}>
+            <form className='add-item' onSubmit={(e) => this.handleAddNoteSubmit(e)}>
                 <label htmlFor='addNote'>Note title: </label>
                 <input type='text' id='addNote' name='addNote'
                         onChange={e => this.updateNoteName(e.target.value)} required></input>
