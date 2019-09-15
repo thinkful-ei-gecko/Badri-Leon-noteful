@@ -17,7 +17,7 @@ export default class FolderList extends React.Component {
           <li className="sidebar__folder-list">
             {check}
           </li>
-      <Link to='/add-folder'><button type='button'>Add Folder</button></Link>
+      <Link to='/add-folder' className="addFolder"><button type='button'>Add Folder</button></Link>
     </>
     );
   }

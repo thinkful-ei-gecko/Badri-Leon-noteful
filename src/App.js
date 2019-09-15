@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { withRouter } from 'react-router';
+// import 'normalize.css';
 import "./App.css";
-import Header from "./Components/Header";
+import {Link} from 'react-router-dom'
 import Main from "./Components/Main";
 import Sidebar from "./Components/Sidebar";
 import FolderList from "./Components/FolderList";
@@ -31,13 +32,12 @@ class App extends Component {
     const newNotes = this.state.notes.filter(note => note.id !== noteId);
     this.setState({
       notes: newNotes
-    });
+    },this.props.history.push('/'));
   };
 
   postAPI = (folderName) => {
     let jsonString = {name: folderName}
     let stringified = JSON.stringify(jsonString);
-    console.log(`stringified is ${stringified}`);
     fetch(`http://localhost:9090/folders`, {
       method: "POST",
       headers: {
@@ -65,7 +65,6 @@ class App extends Component {
                       folderId: noteFolder,
                       modified: new Date().toISOString()}
     let stringified = JSON.stringify(jsonString);
-    console.log(`stringified is ${stringified}`);
     fetch(`http://localhost:9090/notes`, {
       method: "POST",
       headers: {
@@ -143,7 +142,7 @@ class App extends Component {
 
     return (
       <div className="app">
-        <Header />
+        <Link to ='/' className="header"><h1>Noteful</h1></Link>
         <NotefulContext.Provider value={contextValue}>
         <ErrorBoundary selection='sidebar'>
           <Sidebar>

@@ -33,9 +33,13 @@ class NoteDetailedView extends Component {
     const newDate = new Date(note.modified);
 
     return (
-      <div className="main__note-detailed-view" key={note.id}>
-        <p>{note.name}</p>
+      <div className="main__note-item detailed" key={note.id}>
+        <div class="flex">
+        <div class="leftSide">
+        <p className="itemName">{note.name}</p>
         <p>{newDate.toDateString()}</p>
+        </div>
+        <div class="rightSide">
         <Link to="/">
           <button
             type="button"
@@ -44,7 +48,9 @@ class NoteDetailedView extends Component {
             Delete note
           </button>
         </Link>
-        <p>{note.content}</p>
+        </div>
+        </div>
+        <p class="noteDescription">{note.content}</p>
       </div>
     );
   }

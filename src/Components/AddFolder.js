@@ -35,8 +35,10 @@ export default class AddFolder extends React.Component {
                 <input type='text' id='addFolder' name='addFolder'
                         onChange={e => this.updateFolderName(e.target.value)}
                         required></input>
+                <div class="flex">
                 <button type='submit'>Add Folder</button>
                 <button type='button' onClick={() => this.props.history.goBack()}>Go back</button>
+                </div>
             </form>
         )
     }

@@ -53,8 +53,10 @@ export default class AddNote extends React.Component {
                         <option value={folder.id} key={folder.id}>{folder.name}</option>
                     )}
                 </select>
+                <div class="flex">
                 <button type='submit'>Add Note</button>
                 <button type='button' onClick={() => this.props.history.goBack()}>Go back</button>
+                </div>
             </form>        
         )
     }

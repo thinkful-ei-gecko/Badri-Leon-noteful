@@ -31,16 +31,15 @@ export default class NoteItem extends Component {
 
     return (
       <div className="main__note-item" key={id}>
-        <Link to={`/note/${id}`}>
-          <p>{name}</p>
-        </Link>
-        <p>{date.toDateString()}</p>
-        <button
-          type="button"
-          onClick={() => deleteNoteRequest(id, this.context.deleteNote)}
-        >
-          Delete note
-        </button>
+        <div class="leftSide">
+          <p className="itemName">{name}</p>
+          <p>{date.toDateString()}</p>
+        </div>
+        <div class="rightSide">
+          <button type="button" onClick={() => deleteNoteRequest(id, this.context.deleteNote)}>
+            Delete note
+          </button>
+        </div>
       </div>
     );
   }

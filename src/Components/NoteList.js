@@ -19,9 +19,9 @@ class NoteList extends Component {
     return (
       <>
         <li className="main__note-list">
-          {notes.map(note => <ErrorBoundary selection='note' key={note.id + 'eb'}><NoteItem note={note} key={note.id} /></ErrorBoundary>)}
+          {notes.map(note => <ErrorBoundary selection='note' key={note.id + 'eb'}><Link to={`/note/${note.id}`}><NoteItem note={note} key={note.id} /></Link></ErrorBoundary>)}
         </li>
-        <Link to='/add-note'><button type='button'>Add New Note</button></Link>
+        <Link to='/add-note' className="addNote"><button type='button'>+</button></Link>
       </>
     )
   }
