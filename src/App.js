@@ -14,6 +14,7 @@ import AddFolder from './Components/AddFolder';
 import AddNote from './Components/AddNote'
 import NotefulContext from "./NotefulContext";
 import ErrorBoundary from './ErrorBoundary';
+import PropTypes from 'prop-types'
 
 class App extends Component {
   static contextType = NotefulContext;
@@ -62,7 +63,8 @@ class App extends Component {
   postNoteAPI = (noteName, noteContent, noteFolder) => {
     let jsonString = {name: noteName,
                       content: noteContent,
-                      folderId: noteFolder}
+                      folderId: noteFolder,
+                      modified: new Date().toISOString()}
     let stringified = JSON.stringify(jsonString);
     console.log(`stringified is ${stringified}`);
     fetch(`http://localhost:9090/notes`, {
@@ -144,50 +146,30 @@ class App extends Component {
       <div className="app">
         <Header />
         <NotefulContext.Provider value={contextValue}>
-          <Sidebar>
-            <Switch>
-              <ErrorBoundary>
-                <Route exact path="/" component={FolderList} />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <Route path="/folder/:folderId" component={FolderList} />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <Route path="/note/:noteId" component={FolderDetailedView} />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <Route path='/add-folder' component={FolderList} />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <Route path="/add-note" component={FolderList} />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <Route component={NotFound} />
-              </ErrorBoundary>
-            </Switch>
-          </Sidebar>
-          <Main>
-            <Switch>
-              <ErrorBoundary>
-                <Route exact path="/" component={NoteList} />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <Route path="/folder/:folderId" component={NoteList} />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <Route path="/note/:noteId" component={NoteDetailedView} />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <Route path="/add-folder" component={AddFolder} />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <Route path="/add-note" component={AddNote} />
-              </ErrorBoundary>
-              <ErrorBoundary>
-                <Route component={NotFound} />
-              </ErrorBoundary>
-            </Switch>
-          </Main>
+          <ErrorBoundary>
+            <Sidebar>
+              <Switch>
+                  <Route exact path="/" component={FolderList} />
+                  <Route path="/folder/:folderId" component={FolderList} />
+                  <Route path="/note/:noteId" component={FolderDetailedView} />
+                  <Route path='/add-folder' component={FolderList} />
+                  <Route path="/add-note" component={FolderList} />
+                  <Route component={NotFound} />
+              </Switch>
+            </Sidebar>
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <Main>
+              <Switch>
+                  <Route exact path="/" component={NoteList} />
+                  <Route path="/folder/:folderId" component={NoteList} />
+                  <Route path="/note/:noteId" component={NoteDetailedView} />
+                  <Route path="/add-folder" component={AddFolder} />
+                  <Route path="/add-note" component={AddNote} />
+                  <Route component={NotFound} />
+              </Switch>
+            </Main>
+          </ErrorBoundary>
         </NotefulContext.Provider>
       </div>
     );
@@ -195,3 +177,33 @@ class App extends Component {
 }
 
 export default withRouter(App)
+
+NotefulContext.Provider.propTypes = {
+  value : PropTypes.shape({
+    folders: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string
+    })).isRequired,
+    notes: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      modified: PropTypes.string,
+      folderId: PropTypes.string,
+      content: PropTypes.string
+
+    })).isRequired,
+    deleteNote: PropTypes.func.isRequired,
+    postAPI: PropTypes.func.isRequired,
+    postNoteAPI: PropTypes.func.isRequired
+  })
+}
+
+NotefulContext.Provider.defaultProps = {
+  value : {
+    folders: [],
+    notes: [],
+    deleteNote: () => {},
+    postAPI: () => {},
+    postNoteAPI: () => {}
+  }
+}

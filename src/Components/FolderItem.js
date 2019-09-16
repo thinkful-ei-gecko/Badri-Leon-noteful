@@ -24,4 +24,11 @@ FolderItem.propTypes = {
   folder: PropTypes.object.isRequired
 };
 
+FolderItem.propTypes = {
+  folder: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string
+  })
+}
+
 export default withRouter(FolderItem);
