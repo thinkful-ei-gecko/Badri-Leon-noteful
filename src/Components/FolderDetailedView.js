@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
 import NotefulContext from "../NotefulContext";
+import Button from "@material-ui/core/Button";
+import PropTypes from 'prop-types';
 
 class FolderDetailedView extends Component {
   static contextType = NotefulContext;
@@ -24,11 +26,17 @@ class FolderDetailedView extends Component {
     
     return (
       <div className='sidebar__folder-detailed-view'>
-        <button type="button" onClick={() => history.goBack()}>Go back</button>
+        <Button variant="contained" color="primary" type="button" onClick={() => history.goBack()}>Go back</Button>
         <h2>{folder.name}</h2>
       </div>
     )
   }
 }
+
+
+FolderDetailedView.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};
 
 export default withRouter(FolderDetailedView);

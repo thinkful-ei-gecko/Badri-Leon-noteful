@@ -1,5 +1,6 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
+import Button from "@material-ui/core/Button";
 
 export default class AddNote extends React.Component {
 
@@ -53,8 +54,8 @@ export default class AddNote extends React.Component {
                         <option value={folder.id} key={folder.id}>{folder.name}</option>
                     )}
                 </select>
-                <button type='submit'>Add Note</button>
-                <button type='button' onClick={() => this.props.history.goBack()}>Go back</button>
+                <Button variant='contained' color='primary' type='submit'>Add Note</Button>
+                <Button variant='contained' color='primary'onClick={() => this.props.history.goBack()}>Go back</Button>
             </form>        
         )
     }

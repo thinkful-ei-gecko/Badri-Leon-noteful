@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import NoteItem from "./NoteItem";
 import NotefulContext from "../NotefulContext";
+import Button from "@material-ui/core/Button";
+import PropTypes from 'prop-types';
 
 class NoteList extends Component {
   static contextType = NotefulContext;
@@ -20,10 +22,15 @@ class NoteList extends Component {
         <li className="main__note-list">
           {notes.map(note => <NoteItem note={note} key={note.id} />)}
         </li>
-        <Link to='/add-note'><button type='button'>Add New Note</button></Link>
+        <Link to='/add-note'><Button variant="contained" color="primary"type='button'>Add New Note</Button></Link>
       </>
     )
   }
 }
 
 export default withRouter(NoteList);
+
+NoteList.propTypes = {
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired
+}

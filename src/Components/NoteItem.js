@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
+import Button from "@material-ui/core/Button";
+import PropTypes from 'prop-types';
 
 function deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
@@ -34,13 +36,29 @@ export default class NoteItem extends Component {
           <p>{name}</p>
         </Link>
         <p>{date.toDateString()}</p>
-        <button
+        <Button variant="contained" color="primary"
           type="button"
           onClick={() => deleteNoteRequest(id, this.context.deleteNote)}
         >
           Delete note
-        </button>
+        </Button>
       </div>
     );
   }
 }
+
+
+NoteItem.propTypes = {
+  name: PropTypes.object.isRequired
+};
+
+NoteItem.propTypes = {
+  name: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    modified: PropTypes.string.isRequired
+  })
+};
+
+
+

@@ -13,6 +13,7 @@ import NotFound from "./Components/NotFound";
 import AddFolder from './Components/AddFolder';
 import AddNote from './Components/AddNote'
 import NotefulContext from "./NotefulContext";
+import ErrorBoundary from './ErrorBoundary';
 
 class App extends Component {
   static contextType = NotefulContext;
@@ -145,22 +146,46 @@ class App extends Component {
         <NotefulContext.Provider value={contextValue}>
           <Sidebar>
             <Switch>
-              <Route exact path="/" component={FolderList} />
-              <Route path="/folder/:folderId" component={FolderList} />
-              <Route path="/note/:noteId" component={FolderDetailedView} />
-              <Route path='/add-folder' component={FolderList} />
-              <Route path="/add-note" component={FolderList} />
-              <Route component={NotFound} />
+              <ErrorBoundary>
+                <Route exact path="/" component={FolderList} />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Route path="/folder/:folderId" component={FolderList} />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Route path="/note/:noteId" component={FolderDetailedView} />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Route path='/add-folder' component={FolderList} />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Route path="/add-note" component={FolderList} />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Route component={NotFound} />
+              </ErrorBoundary>
             </Switch>
           </Sidebar>
           <Main>
             <Switch>
-              <Route exact path="/" component={NoteList} />
-              <Route path="/folder/:folderId" component={NoteList} />
-              <Route path="/note/:noteId" component={NoteDetailedView} />
-              <Route path="/add-folder" component={AddFolder} />
-              <Route path="/add-note" component={AddNote} />
-              <Route component={NotFound} />
+              <ErrorBoundary>
+                <Route exact path="/" component={NoteList} />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Route path="/folder/:folderId" component={NoteList} />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Route path="/note/:noteId" component={NoteDetailedView} />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Route path="/add-folder" component={AddFolder} />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Route path="/add-note" component={AddNote} />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <Route component={NotFound} />
+              </ErrorBoundary>
             </Switch>
           </Main>
         </NotefulContext.Provider>

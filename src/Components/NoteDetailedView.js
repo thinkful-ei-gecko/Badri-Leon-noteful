@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
+import Button from "@material-ui/core/Button";
+import PropTypes from 'prop-types';
 
 function deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
@@ -37,17 +39,22 @@ class NoteDetailedView extends Component {
         <p>{note.name}</p>
         <p>{newDate.toDateString()}</p>
         <Link to="/">
-          <button
+        <Button variant="contained" color="primary"
             type="button"
             onClick={() => deleteNoteRequest(note.id, this.context.deleteNote)}
           >
             Delete note
-          </button>
+          </Button>
         </Link>
         <p>{note.content}</p>
       </div>
     );
   }
 }
+
+
+NoteDetailedView.propTypes = {
+  match: PropTypes.object.isRequired
+};
 
 export default withRouter(NoteDetailedView);

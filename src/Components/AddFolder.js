@@ -1,5 +1,6 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
+import Button from "@material-ui/core/Button";
 
 export default class AddFolder extends React.Component {
 
@@ -35,8 +36,8 @@ export default class AddFolder extends React.Component {
                 <input type='text' id='addFolder' name='addFolder'
                         onChange={e => this.updateFolderName(e.target.value)}
                         required></input>
-                <button type='submit'>Add Folder</button>
-                <button type='button' onClick={() => this.props.history.goBack()}>Go back</button>
+                <Button variant="contained" color="primary" type='submit'>Add Folder</Button>
+                <Button variant="contained" color="primary" type='button' onClick={() => this.props.history.goBack()}>Go back</Button>
             </form>
         )
     }
