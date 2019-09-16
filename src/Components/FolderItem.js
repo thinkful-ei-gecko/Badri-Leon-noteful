@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
 import './FolderItem.css';
 
 class FolderItem extends Component {
@@ -19,3 +20,10 @@ class FolderItem extends Component {
 }
 
 export default withRouter(FolderItem);
+
+FolderItem.propTypes = {
+  folder: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string
+  })
+}

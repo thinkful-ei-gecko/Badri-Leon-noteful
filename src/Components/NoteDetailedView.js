@@ -35,12 +35,12 @@ class NoteDetailedView extends Component {
 
     return (
       <div className="main__note-item detailed" key={note.id}>
-        <div class="flex">
-        <div class="leftSide">
+        <div className="flex">
+        <div className="leftSide">
         <p className="itemName">{note.name}</p>
         <p>{newDate.toDateString()}</p>
         </div>
-        <div class="rightSide">
+        <div className="rightSide">
         <Link to="/">
           <button
             type="button"
@@ -51,7 +51,7 @@ class NoteDetailedView extends Component {
         </Link>
         </div>
         </div>
-        <p class="noteDescription">{note.content}</p>
+        <p className="noteDescription">{note.content}</p>
       </div>
     );
   }

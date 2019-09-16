@@ -193,3 +193,13 @@ NotefulContext.Provider.propTypes = {
     postNoteAPI: PropTypes.func.isRequired
   })
 }
+
+NotefulContext.Provider.defaultProps = {
+  value : {
+    folders: [],
+    notes: [],
+    deleteNote: () => {},
+    postAPI: () => {},
+    postNoteAPI: () => {}
+  }
+}

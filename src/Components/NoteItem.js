@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import NotefulContext from "../NotefulContext";
 import './noteItem.css'
+import PropTypes from 'prop-types'
 
 function deleteNoteRequest(noteId, callback) {
   fetch(`http://localhost:9090/notes/${noteId}`, {
@@ -45,3 +46,13 @@ export default class NoteItem extends Component {
     );
   }
 }
+
+NoteItem.propTypes = {
+  note: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    modified: PropTypes.string,
+    folderId: PropTypes.string,
+    content: PropTypes.string
+  })
+};
