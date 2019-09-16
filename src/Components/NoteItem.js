@@ -55,3 +55,7 @@ NoteItem.propTypes = {
     content: PropTypes.string
   })
 };
+
+NoteItem.defaultProps = {
+  note: {}
+}

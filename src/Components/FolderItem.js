@@ -27,3 +27,7 @@ FolderItem.propTypes = {
     name: PropTypes.string
   })
 }
+
+FolderItem.defaultProps = {
+  folder: {}
+}
