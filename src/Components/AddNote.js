@@ -24,17 +24,24 @@ export default class AddNote extends React.Component {
     }
 
     updateNoteName(noteName) {
-        this.setState({noteName});
+        if (typeof noteName === 'string') {
+            this.setState({noteName});
+        }
+        else { alert('please enter a string'); }
     }
 
     updateNoteContent(noteContent) {
-        this.setState({noteContent});
-        console.log(noteContent);
+        if (typeof noteName === 'string') {
+            this.setState({noteContent});
+        }
+        else { alert('please enter a string'); }
     }
 
     updateNoteFolder(noteFolder) {
-        this.setState({noteFolder})
-        console.log(noteFolder)
+        if (typeof noteFolder === 'string') {
+            this.setState({noteFolder})
+        }
+        else { alert('please enter a string'); }
     }
 
     render () {

@@ -30,7 +30,7 @@ class NoteDetailedView extends Component {
   render() {
     const { notes } = this.context;
     const { match } = this.props;
-    const note = notes.find(note => note.id === match.params.noteId) || {} ;
+    const note = notes.find(note => note.id === match.params.noteId) || {};
     const newDate = new Date(note.modified);
 
     return (
