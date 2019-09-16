@@ -14,6 +14,8 @@ import NotefulContext from "./NotefulContext";
 import ErrorBoundary from './Components/ErrorBoundary'
 import PropTypes from 'prop-types'
 
+//close to final version
+
 class App extends Component {
   static contextType = NotefulContext;
 
